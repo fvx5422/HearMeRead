@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Hear Me Read — Desktop</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../build/icon.png">
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:16px;background:#f3f4f6;color:#111}
+    .wrap{max-width:1100px;margin:0 auto}
+    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    button{padding:8px 12px;border-radius:8px;border:0;background:#2563eb;color:white;font-weight:600;cursor:pointer}
+    button.gray{background:#9ca3af}
+    textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #d1d5db;font-size:14px}
+    .transcript{min-height:90px;padding:8px;border-radius:6px;border:1px dashed #cbd5e1;background:#f8fafc}
+    .pdfview{height:500px;border:1px solid #e5e7eb;border-radius:12px;overflow:auto;background:#111;display:flex;justify-content:center;align-items:flex-start}
+    canvas{margin:10px;border-radius:6px;background:#222}
+    .flag{display:flex;justify-content:space-between;gap:8px;padding:6px 8px;border-radius:8px;border:1px solid #e6eefc;margin-top:8px;background:#f8fbff;align-items:center}
+    .muted{color:#6b7280;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Hear Me Read — Desktop</h2>
+    <div class="card">
+      <div class="row">
+        <button id="open">Open eBook (PDF/TXT)</button>
+        <button id="start">Start Reading</button>
+        <button id="stop" class="gray" disabled>Stop</button>
+        <button id="export">Export Report</button>
+      </div>
+      <div style="margin-top:10px">
+        <label>Expected text (editable)</label>
+        <textarea id="expected" rows="3">Open a PDF/TXT to auto-fill expected text, or edit this.</textarea>
+      </div>
+      <div style="margin-top:10px">
+        <div><strong>Transcript</strong></div>
+        <div id="transcript" class="transcript"><em class="muted">Nothing yet — start a reading session.</em></div>
+      </div>
+      <div style="margin-top:10px">
+        <div><strong>Flagged (possible mispronunciations)</strong></div>
+        <div id="flags"><em class="muted">No issues detected yet.</em></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:16px">Preview</h3>
+    <div id="pdf" class="pdfview"><div class="muted" style="padding:12px">PDF pages will appear here</div></div>
+  </div>
+
+  <script src="../node_modules/pdfjs-dist/build/pdf.min.js"></script>
+  <script src="../node_modules/pdfjs-dist/build/pdf.worker.min.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
